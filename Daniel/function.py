@@ -4,13 +4,15 @@ def menu():
     print('----------------------------------------------------')
     print('                Agenda de Contactos                | ')
     print('----------------------------------------------------')
-    print('1. Ingresa 1 para agregar')
+    print('1. Ingresa 1 para Agregar Contacto')
     print('-------------------------')
-    print('2. Ingresa 2 para mostrar tus contactatos')
+    print('2. Ingresa 2 para Mostrar tus Contactatos')
     print('-----------------------------------------')
-    print('3. Ingresa 3 para Buscar contactatos')
+    print('3. Ingresa 3 para Buscar Contactatos')
     print('-----------------------------------------')
-    print('4. Ingresa 4 para salir')
+    print('4. Ingresa 4 para Editar Contactos')
+    print('-----------------------------------------')
+    print('6. Ingresa 6 para Salir')
     print('-----------------------')
 
 #cargar archivos
@@ -33,7 +35,7 @@ def registro():
     try:
         telefono = int(input('Ingrese Numero Telefonico: ').strip())
     except ValueError:
-        print('Ingrese solo numeros')
+        print('Ingresa solo numeros')
         return
     while True:
      correo = input('Ingresa Correo : ').lower().strip()   
@@ -78,6 +80,46 @@ def buscar():
          encontrado= True
     if not encontrado:
         print('Este contacto no existe en tu agenda')
-       
+     
+#editar contactos
+ # cargar contonactos
+ # input que contacto desea modifiicar
+ #validar si esta el contacto
+ #si el nombre esta. 
+  # modificar numero
+  #correo
+  #guardar
+ #sino 
+   #no existe
 
+def editar ():
+    contactos = cargar_contactos()
+    editar_contacto = input('Ingresa Nombre del Contacto que Desea Editar: ').strip().lower()
+    encontrado= False
+    for c in contactos:
+      name = c.get('nombre').lower()
+      if name == editar_contacto:
+        nuevo_nombre = input('Nuevo Nombre: ').strip().lower()
+        try:
+            nuevo_telefono = int(input('Nuevo Numero de telefono: '))
+        except  ValueError:
+            print('Ingresa solo numeros')
+            return
+        while True:
+            nuevo_correo = input('Nuevo Numero Correo: ')
+            if '@' in nuevo_correo and '.' in nuevo_correo:
+                break
+            else:
+                print('Formato de correo no Valido')
+        c['nombre'] = nuevo_nombre
+        c['telefono'] = nuevo_telefono
+        c['correo'] = nuevo_correo
+        encontrado= True
+        print(f'El contacto: {nuevo_nombre} fue editado Correctamente ')
+        guardar(contactos)
+        return
+    if not encontrado:
+        print('Este contacto no existe en tu agenda')
+  
+#eliminar contactos
                 

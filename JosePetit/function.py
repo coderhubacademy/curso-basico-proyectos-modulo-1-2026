@@ -3,10 +3,10 @@ import json
 RUTA = "JosePetit/data/datos.json"
 
 def registrar_reserva(lista):
-    print("\n--- NUEVA RESERVA ---")
+    print("--- NUEVA RESERVA ")
     cliente = input("Nombre del cliente: ")
-    fecha = input("Fecha (DD/MM): ")
-    hora = input("Hora (HH:MM): ")
+    fecha = input("Fecha (D/M): ")
+    hora = input("Hora (H:M): ")
 
     lista = []
     
@@ -22,34 +22,35 @@ def registrar_reserva(lista):
 
 def guardar_datos(lista):
     with open(RUTA, "w", encoding="utf-8") as f:
-        json.dump(lista, f, indent=4, ensure_ascii=False)
-    print(">>> Datos guardados en el JSON.")
+        json.dump(lista, f)
+    print(" Datos guardados en el JSON.")
 
 def eliminar_reserva(lista):
-    print("--- LISTA DE RESERVAS ---")
+    print(" LISTA DE RESERVAS: ")
    
-    for i in len(lista):
+    for i in range(len(lista)):
         reserva = lista[i]
-        print(f"{i}. Cliente: {reserva['cliente']} - Fecha: {reserva['fecha']}")
+        print(f"{i+1}. Cliente: {reserva['cliente']} - Fecha: {reserva['fecha']}")
     
     
     indice = int(input("Ingresa el número de la reserva a eliminar: "))
     
     
-    eliminada = lista.pop(indice)
+    eliminada = lista.pop(indice - 1)
     
     guardar_datos(lista)
     
     print(f"Reserva de {eliminada['cliente']} eliminada correctamente.")
     return lista
 
-def listar_reserva():
-    print("tu mami we")
+#def listar_reserva(lista):
+    
+    
+def buscar_reserva(lista):
+    nombre = input("Ingresa el nombre del cliente a buscar").lower()
 
-def buscar_reserva():
-    print("tumba la casa mami")
 
-def modificar_reserva():
-    print("no tengo batería")
+   
 
+#def modificar_reserva():
 

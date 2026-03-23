@@ -43,14 +43,26 @@ def eliminar_reserva(lista):
     print(f"Reserva de {eliminada['cliente']} eliminada correctamente.")
     return lista
 
-#def listar_reserva(lista):
+def listar_reserva(lista):
+    if not lista:
+        print("Aun no hay reservas registradas.")
+    else:
+      print("Lista de reservas:")
+      for r in lista:
+        print(f"Cliente: {r['cliente']}")
+
     
     
 def buscar_reserva(lista):
     nombre = input("Ingresa el nombre del cliente a buscar").lower()
 
+    for reserva in lista:
+        if nombre in reserva['cliente'].lower():
+            print(f"Hallada: {reserva['cliente']} a las {reserva['hora']}")
+            break
+    else:
+        print("No se encontró nada")
+
+# def modificar_reserva()
 
    
-
-#def modificar_reserva():
-

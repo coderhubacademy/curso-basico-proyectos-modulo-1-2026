@@ -1,18 +1,8 @@
 [
     {
-        "nombre": "daniel lopez",
-        "telefono": 4124125221,
-        "correo": "daniel@gmail.com"
-    },
-    {
         "nombre": "daniela sanchez",
         "telefono": 4125211241,
         "correo": "daniela@gmail.com"
-    },
-    {
-        "nombre": "delimar rodriguez",
-        "telefono": 4145151236,
-        "correo": "deli@gmail.com"
     },
     {
         "nombre": "carlos perez",
@@ -25,8 +15,18 @@
         "correo": "ale@gmail.com"
     },
     {
+        "nombre": "daniel lopez",
+        "telefono": 4124523225,
+        "correo": "daniel@gmail.com"
+    },
+    {
+        "nombre": "delimar rodriguez",
+        "telefono": 4147414125,
+        "correo": "deli@gmail.com"
+    },
+    {
         "nombre": "flor marina",
-        "telefono": 4124521252,
-        "correo": "flormar@gmail.com"
+        "telefono": 4125236365,
+        "correo": "flor@gmail.com"
     }
 ]

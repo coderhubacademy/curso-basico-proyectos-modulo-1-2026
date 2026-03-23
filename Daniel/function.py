@@ -12,6 +12,8 @@ def menu():
     print('-----------------------------------------')
     print('4. Ingresa 4 para Editar Contactos')
     print('-----------------------------------------')
+    print('5. Ingresa 5 para Eliminar Contacto')
+    print('-----------------------------------------')
     print('6. Ingresa 6 para Salir')
     print('-----------------------')
 
@@ -58,7 +60,7 @@ def listar ():
     contactos = cargar_contactos()
     
     if not contactos:
-        print('No ha contactos registrados')
+        print('No hay contactos registrados')
         return
     contactos.sort(key=lambda c : c.get('nombre', ''))
     print('--lISTA DE CONTACTOS--')
@@ -122,4 +124,36 @@ def editar ():
         print('Este contacto no existe en tu agenda')
   
 #eliminar contactos
-                
+  # cargar contacto
+  #input que contacto desea eliminar
+  # recorrer
+    # validacion de nombre
+    # si esta 
+     # preguntar para seguridad s/n
+     # se elimina
+     # guardar
+     #salgo del for
+    #si no
+     # return menu
+    #si no 
+     #no existe
+
+def eliminar():
+    contactos = cargar_contactos()
+    contacto_eliminar = input('Ingresa Nombre del Contacto a eliminar: ').strip().lower()
+    encontrado= False
+    for c in contactos:
+      name = c.get('nombre').lower()
+      if name == contacto_eliminar:
+        seguridad= input(f'Estas seguro de eliminar a {name} | {c["telefono"]} | {c["correo"]} ?  S/N: ').strip().lower()
+        if seguridad == 's':
+         contactos.remove(c)
+         encontrado = True
+         print(f'{name} Borrado de tus contactos exitosamente')
+         guardar(contactos)
+         return
+        else:
+            return
+        
+    else:
+        print('Nombre no encontrado')

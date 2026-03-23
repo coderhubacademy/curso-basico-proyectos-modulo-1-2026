@@ -18,6 +18,8 @@ while True:
             function.buscar()
         case 4:
             function.editar()
+        case 5:
+            function.eliminar()
         case 6:
             print('Fin del programa')
             break

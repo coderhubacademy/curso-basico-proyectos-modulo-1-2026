@@ -10,11 +10,13 @@ def menu():
     print('-----------------------------------------')
     print('3. Ingresa 3 para Buscar Contactatos')
     print('-----------------------------------------')
-    print('4. Ingresa 4 para Editar Contactos')
+    print('4. Ingresa 4 para Filtro Busqueda por Grupo')
     print('-----------------------------------------')
-    print('5. Ingresa 5 para Eliminar Contacto')
+    print('5. Ingresa 5 para Editar Contactos')
     print('-----------------------------------------')
-    print('6. Ingresa 6 para Salir')
+    print('6. Ingresa 6 para Eliminar Contacto')
+    print('-----------------------------------------')
+    print('7. Ingresa 7 para Salir')
     print('-----------------------')
 
 #cargar archivos
@@ -39,17 +41,38 @@ def registro():
     except ValueError:
         print('Ingresa solo numeros')
         return
+
     while True:
      correo = input('Ingresa Correo : ').lower().strip()   
      if '@'in correo and '.' in correo:
          break
      else:
         print('Formato de correo no Valido')
-    
+
+    while True:    
+        try:
+            grupo = int(input('Asigna un Grupo: 1. Familia | 2. Amigos | 3. Trabajo: '))
+        except ValueError:
+            print('Error: Ingresa un Numero')   
+            continue
+        match grupo:
+         case 1 :
+            grupo = 'familia'
+            break
+         case 2:
+            grupo = 'amigos'
+            break
+         case 3:
+            grupo = 'trabajo'
+            break
+         case _:
+            print('opcion fuera de rango')
+
     nuevo_contacto = {
         'nombre' : nombre,
         'telefono': telefono,
-        'correo': correo
+        'correo': correo,
+        'grupo': grupo
     }
     contactos.append(nuevo_contacto)
     guardar(contactos)
@@ -62,12 +85,14 @@ def listar ():
     if not contactos:
         print('No hay contactos registrados')
         return
+        
     contactos.sort(key=lambda c : c.get('nombre', ''))
     print('--lISTA DE CONTACTOS--')
     for c in contactos:
         print(f'Nombre : {c.get("nombre").title()}')
         print(f'Telefono : {c.get("telefono")}')
         print(f'Correo electronico : {c.get("correo")}')
+        print(f'Grupo: {c.get("grupo")}')
         print('-----------------------------------------')
         
 #buscar contactos  
@@ -82,6 +107,24 @@ def buscar():
          encontrado= True
     if not encontrado:
         print('Este contacto no existe en tu agenda')
+
+
+#cargar contactos 
+#print grupos
+#input
+# list comprehencion nueva_lista = [elemento for elemento in tu_lista_original if condicion]
+# itero
+#muestro resultados 
+
+#filtro grupos
+def filtro_grupo():
+    contacto= cargar_contactos()
+    print('Grupos: Familia | Amigos | Trabajo')
+    filtrar_contacto = input('Escribe el Grupo: ').strip().lower()
+    filtro = [c for c in  contacto if filtrar_contacto == c.get('grupo') ]
+    for c in filtro:
+        print(f' {c.get("nombre")} | {c.get("telefono")}  | {c.get("correo")} | {c.get("grupo")}')
+
      
 #editar contactos
  # cargar contonactos

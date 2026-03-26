@@ -15,11 +15,6 @@
         "correo": "ale@gmail.com"
     },
     {
-        "nombre": "daniel lopez",
-        "telefono": 4124523225,
-        "correo": "daniel@gmail.com"
-    },
-    {
         "nombre": "delimar rodriguez",
         "telefono": 4147414125,
         "correo": "deli@gmail.com"
@@ -28,5 +23,29 @@
         "nombre": "flor marina",
         "telefono": 4125236365,
         "correo": "flor@gmail.com"
+    },
+    {
+        "nombre": "maria alejandra lopez",
+        "telefono": 412452255,
+        "correo": "mari@gmail.com",
+        "grupo": "familia"
+    },
+    {
+        "nombre": "mauricio lopez",
+        "telefono": 4125254122,
+        "correo": "mau@gmail.com",
+        "grupo": "familia"
+    },
+    {
+        "nombre": "renee gutierrez",
+        "telefono": 412122352,
+        "correo": "renee@gmail.com",
+        "grupo": "trabajo"
+    },
+    {
+        "nombre": "ana luisa sanchez",
+        "telefono": 4144154523,
+        "correo": "analuisa@gmail.com",
+        "grupo": "trabajo"
     }
 ]

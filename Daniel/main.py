@@ -17,10 +17,12 @@ while True:
         case 3:
             function.buscar()
         case 4:
-            function.editar()
+            function.filtro_grupo()
         case 5:
-            function.eliminar()
+            function.editar()
         case 6:
+            function.eliminar()
+        case 7:
             print('Fin del programa')
             break
             

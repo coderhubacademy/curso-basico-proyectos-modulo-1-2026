@@ -9,7 +9,7 @@ Cada estudiante tendrá un proyecto específico asignado y deberá construir una
 
 ## Fecha de entrega
 
-**Miércoles 01 de abril de 2026**
+**Sabado 04 de abril de 2026**
 
 ---
 

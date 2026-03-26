@@ -9,7 +9,7 @@ Cada estudiante tendrá un proyecto específico asignado y deberá construir una
 
 ## Fecha de entrega
 
-**Sabado 04 de abril de 2026**
+**Miércoles 01 de abril de 2026**
 
 ---
 
@@ -75,21 +75,6 @@ Cada estudiante debe:
 - realizar commits frecuentes con mensajes claros,
 - subir su rama al repositorio remoto,
 - crear un **Pull Request** para revisión.
-
-### Creacion de una rama
-
-- git checkout -b: crea una rama y cambia a ella
-- git branch: lista las ramas
-- git checkout: cambia de rama
-- git add: agrega archivos al stage
-- git commit: guarda los cambios
-- git push: sube los cambios al repositorio
-- git pull: descarga los cambios del repositorio
-
-Ejemplo de creacion de una rama:
-```bash
-git checkout -b proyecto-[nombre]-[apellido]
-```
 
 ### Regla importante
 No debes trabajar directamente sobre la rama principal.

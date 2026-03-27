@@ -1,86 +1,86 @@
-import json
+#import json
 
 
-def cargar_datos():
-        with open("datos.json", "r", ) as archivo:
-            return json.load(archivo)
+#def cargar_datos():
+       # with open("datos.json", "r", ) as archivo:
+            #return json.load(archivo)
 
-def guardar_datos(lista):
-    with open("datos.json", "w", ) as archivo:
-        json.dump(lista, archivo,)
-    print("Datos guardados correctamente.")
+#def guardar_datos(lista):
+    #with open("datos.json", "w", ) as archivo:
+        #json.dump(lista, archivo,)
+    #print("Datos guardados correctamente.")
 
-def registrar_reserva(lista):
-      print("\n NUEVA RESERVA")
-      cliente = input("Nombre del cliente: ")
-      fecha = input("Fecha (D/M): ")
-      hora = input("Hora (H:M): ")
+#def registrar_reserva(lista):
+      #print("\n NUEVA RESERVA")
+      #cliente = input("Nombre del cliente: ")
+      #fecha = input("Fecha (D/M): ")
+      #hora = input("Hora (H:M): ")
     
-      nueva = {"cliente": cliente, "fecha": fecha, "hora": hora}
-      lista.append(nueva)
+      #nueva = {"cliente": cliente, "fecha": fecha, "hora": hora}
+      #lista.append(nueva)
     
-      guardar_datos(lista)
-      print(f"Reserva de {cliente} registrada.")
-      return lista
+      #guardar_datos(lista)
+      #print(f"Reserva de {cliente} registrada.")
+      #return lista
 
-def listar_reserva(lista):
-    if not lista:
-        print("\nNo hay reservas en el sistema.")
-    else:
-        print("\n LISTADO DE RESERVAS ")
-        n = 1
-        for r in lista:
-            print(f"{n}. Cliente: {r['cliente']} | Fecha: {r['fecha']} | Hora: {r['hora']}")
-            n = n + 1
+#def listar_reserva(lista):
+    #if not lista:
+        #print("\nNo hay reservas en el sistema.")
+    #else:
+        #print("\n LISTADO DE RESERVAS ")
+        #n = 1
+        #for r in lista:
+            #print(f"{n}. Cliente: {r['cliente']} | Fecha: {r['fecha']} | Hora: {r['hora']}")
+            #n = n + 1
 
-def eliminar_reserva(lista):
-    if not lista:
-        print("\nLa lista está vacía, nada que eliminar.")
-        return lista
+#def eliminar_reserva(lista):
+    #if not lista:
+        #print("\nLa lista está vacía, nada que eliminar.")
+        #return lista
 
-    listar_reserva(lista)
+    #listar_reserva(lista)
     
     
-    opcion = int(input("\n¿Qué número de reserva deseas eliminar? "))
-    indice = opcion - 1
+    #opcion = int(input("\n¿Qué número de reserva deseas eliminar? "))
+    #indice = opcion - 1
         
-    if indice >= 0 and indice < len(lista):
-        eliminada = lista.pop(indice)
-        guardar_datos(lista)
-        print(f"Reserva de {eliminada['cliente']} eliminada.")
-    else:
-        print("Ese número no está en la lista.")
+    #if indice >= 0 and indice < len(lista):
+        #eliminada = lista.pop(indice)
+        #guardar_datos(lista)
+        #print(f"Reserva de {eliminada['cliente']} eliminada.")
+    #else:
+        #print("Ese número no está en la lista.")
 
-    return lista
+    #return lista
 
-def buscar_reserva(lista):
-    nombre = input("Nombre a buscar: ").lower()
-    encontrado = False
-    for r in lista:
-        if nombre in r['cliente'].lower():
-            print(f"Encontrado: {r['cliente']} - {r['fecha']} a las {r['hora']}")
-            encontrado = True
+#def buscar_reserva(lista):
+    #nombre = input("Nombre a buscar: ").lower()
+    #encontrado = False
+    #for r in lista:
+        #if nombre in r['cliente'].lower():
+            #print(f"Encontrado: {r['cliente']} - {r['fecha']} a las {r['hora']}")
+            #encontrado = True
     
-    if not encontrado:
-        print("Busque bien (no mentira, no está).")
+    #if not encontrado:
+       # print("Busque bien (no mentira, no está).")
 
-def modificar_reserva(lista):
-    if not lista:
-        print("\nNada que modificar.")
-        return lista 
+#def modificar_reserva(lista):
+   # if not lista:
+    #    print("\nNada que modificar.")
+      #  return lista 
 
-    listar_reserva(lista)
-    opcion = int(input("Número de reserva a modificar: "))
-    indice = opcion - 1 
+   # listar_reserva(lista)
+   # opcion = int(input("Número de reserva a modificar: "))
+   # indice = opcion - 1 
     
-    if indice >= 0 and indice < len(lista):
-        print(f"Editando a: {lista[indice]['cliente']}")
-        lista[indice]['cliente'] = input("Nuevo nombre: ")
-        lista[indice]['fecha'] = input("Nueva fecha: ")
-        lista[indice]['hora'] = input("Nueva hora: ")
-        guardar_datos(lista)
-        print("Reserva actualizada.")
-    else:
-        print("Número inválido.")
+   # if indice >= 0 and indice < len(lista):
+        #print(f"Editando a: {lista[indice]['cliente']}")
+        #lista[indice]['cliente'] = input("Nuevo nombre: ")
+        #lista[indice]['fecha'] = input("Nueva fecha: ")
+        #lista[indice]['hora'] = input("Nueva hora: ")
+        #guardar_datos(lista)
+        #print("Reserva actualizada.")
+    #else:
+        #print("Número inválido.")
     
-    return lista
+    #return lista

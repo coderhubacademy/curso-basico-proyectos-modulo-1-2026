@@ -1,0 +1,1 @@
+1. listar reservas antes de eliminar reservas 

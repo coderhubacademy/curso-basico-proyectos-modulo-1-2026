@@ -1,39 +1,48 @@
 import function as rs
+import time
 
-def app_restaurante():
-    print("Restaurant App")
+
+mis_reservas = rs.cargar_datos()
+
+def mostrar_menu():
+    print("\n APP RESERVAS ")
     print()
-    print("1. Registrar Reserva")
+    print("1. Registrar")
     print()
-    print("2. Listar Reservas")
+    print("2. Listar")
     print()
-    print("3. Buscar Reservas")
+    print("3. Buscar")
     print()
-    print("4. Modificar Reserva (fecha y/o hora)")
+    print("4. Modificar")
     print()
-    print("5. Eliminar Reservas")
+    print("5. Eliminar")
     print()
     print("6. Salir")
-    print()
 
 while True: 
-
-    app_restaurante()
-    option = int(input("Seleccione una opción"))
+    mostrar_menu()
+    option = int(input("\nSeleccione opción: "))
 
     if option == 1:
-        rs.registrar_reserva()
+        print("Cargando...")
+        time.sleep(5)
+        rs.registrar_reserva(mis_reservas)
     elif option == 2:
-        rs.listar_reserva()
+        print("Cargando lista...")
+        time.sleep(5)
+        rs.listar_reserva(mis_reservas)
     elif option == 3:
-        rs.buscar_reserva()
+        print("Espere...")
+        time.sleep(5)
+        rs.buscar_reserva(mis_reservas)
     elif option == 4:
-        rs.modificar_reserva()
+         rs.modificar_reserva(mis_reservas)
     elif option == 5:
-        rs.eliminar_reserva()
+         rs.eliminar_reserva(mis_reservas)
+         print()
+         print("Felicidades logró eliminar su reserva")
     elif option == 6:
-        print("Perfecto, le deseo un buen día")
+        print("Perfecto, tenga un gran día :) ")
         break
     else:
-        print("elija una de las 6 opciones, no se haga wei :p")
-
+        print("Opción no válida (ponga num del 1 al 6)")

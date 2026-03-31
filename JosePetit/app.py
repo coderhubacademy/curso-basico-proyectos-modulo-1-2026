@@ -40,7 +40,7 @@ while True:
          time.sleep(5)
          rs.modificar_reserva(mis_reservas)
     elif option == 5:
-         print("CCargando Lista...")
+         print("Cargando Lista...")
          time.sleep(5)
          rs.eliminar_reserva(mis_reservas)
          print()

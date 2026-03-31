@@ -1,0 +1,9 @@
+[
+    {
+        "ID": "PROD-001",
+        "nombre": "Leche",
+        "precio": 20.0,
+        "cantidad": 10,
+        "categoria": "Bebidas"
+    }
+]

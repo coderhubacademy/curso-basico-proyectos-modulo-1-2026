@@ -1,1 +1,6 @@
 1. listar reservas antes de eliminar reservas 
+
+2. Base Json: en los nombres salen archivos con errores ("Ram\u00f3n", "Rodrigo", "Jos\u00f3n"):
+   2.1 usa espacios de identación 
+   2.2 el bendito ensure_ascii (te salvará las papas xd)
+

@@ -1,1 +1,22 @@
-[]
+[
+    {
+        "cliente": "José",
+        "fecha": "10/5",
+        "hora": "10:00"
+    },
+    {
+        "cliente": "Jesús",
+        "fecha": "11/5",
+        "hora": "5:00"
+    },
+    {
+        "cliente": "Ben",
+        "fecha": "11/5",
+        "hora": "6:00"
+    },
+    {
+        "cliente": "Désiré",
+        "fecha": "11/5",
+        "hora": "14:00"
+    }
+]

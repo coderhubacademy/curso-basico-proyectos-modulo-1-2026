@@ -25,5 +25,23 @@
         "cantidad": 2,
         "precio": 2.0,
         "total": 4.0
+    },
+    {
+        "fecha": "2027",
+        "codigo": "14",
+        "codigo_venta": "01",
+        "producto": "1",
+        "cantidad": 14,
+        "precio": 14.0,
+        "total": 196.0
+    },
+    {
+        "fecha": "055",
+        "codigo": "ww",
+        "codigo_venta": "01",
+        "producto": "1",
+        "cantidad": 1,
+        "precio": 1.0,
+        "total": 1.0
     }
 ]

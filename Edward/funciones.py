@@ -75,7 +75,19 @@ def app():
 def registrar_venta(venta):
   print("\n── REGISTRAR UNA NUEVA VENTA ──────────────────")
   fecha = input("Fecha (YYYY-MM-DD): ").strip()
+# Validacion de formato de fecha 
+  if not fecha:
+    print("Error. La fecha no puede estar vacía.")
+    return 
+  if not fecha.count("-") == 2:
+    print("Error. La fecha debe tener el formato YYYY-MM-DD.")
+    return
+  if not all(part.isdigit() for part in fecha.split("-")):
+    print("Error. La fecha debe contener solo números y guiones.")
+    return
+  
   codigo_venta = input("Código de la venta: ").strip()
+# Validacion de codigo de venta
   if codigo_venta in [v["codigo_venta"] for v in venta]:
     print("Error. El código de venta ya existe.")
     return    

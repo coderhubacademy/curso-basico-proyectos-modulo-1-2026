@@ -2,13 +2,13 @@ from libro_manager import cargar_libros, agregar_libro, listar_libros, buscar_li
 
 
 def menu():
-    print("\nGestor de colección de libros")
+    print("\nGestor de coleccion de libros")
     print("1) Agregar libro")
     print("2) Listar todos los libros")
-    print("3) Listar libros leídos")
-    print("4) Listar libros no leídos")
+    print("3) Listar libros leidos")
+    print("4) Listar libros no leidos")
     print("5) Buscar libro")
-    print("6) Marcar leído/no leído")
+    print("6) Marcar leido/no leido")
     print("7) Eliminar libro")
     print("8) Salir")
 
@@ -18,7 +18,7 @@ def main():
 
     while True:
         menu()
-        opcion = input("Selecciona una opción: ").strip()
+        opcion = input("Selecciona una opcion: ").strip()
 
         if opcion == "1":
             agregar_libro(libros)
@@ -35,10 +35,10 @@ def main():
         elif opcion == "7":
             eliminar_libro(libros)
         elif opcion == "8":
-            print("Saliendo. ¡Hasta luego!")
+            print("Saliendo. Hasta luego!")
             break
         else:
-            print("Opción no válida. Intenta de nuevo.")
+            print("Opcion no valida. Intenta de nuevo.")
 
 
 if __name__ == "__main__":

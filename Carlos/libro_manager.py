@@ -17,7 +17,7 @@ def cargar_libros():
         with DB_PATH.open("r", encoding="utf-8") as f:
             return json.load(f)
     except (json.JSONDecodeError, IOError):
-        print("Advertencia: no se pudo leer el archivo de datos. Se iniciará una colección vacía.")
+        print("Advertencia: no se pudo leer el archivo de datos. Se iniciara una coleccion vacia.")
         return []
 
 
@@ -37,20 +37,20 @@ def siguiente_id(libros):
 
 
 def agregar_libro(libros):
-    titulo = input("Título: ").strip()
+    titulo = input("Titulo: ").strip()
     if not titulo:
-        print("El título no puede estar vacío.")
+        print("El titulo no puede estar vacio.")
         return
 
     autor = input("Autor: ").strip()
-    año = input("Año de publicación (opcional): ").strip()
-    leido = input("¿Leíste el libro? (s/n): ").strip().lower() == "s"
+    anio = input("Anio de publicacion (opcional): ").strip()
+    leido = input("¿Leiste el libro? (s/n): ").strip().lower() == "s"
 
     libro = {
         "id": siguiente_id(libros),
         "titulo": titulo,
         "autor": autor,
-        "año": año,
+        "anio": anio,
         "leido": leido,
     }
     libros.append(libro)
@@ -60,7 +60,7 @@ def agregar_libro(libros):
 
 def listar_libros(libros, filtro=None):
     if not libros:
-        print("No hay libros en la colección.")
+        print("No hay libros en la coleccion.")
         return
 
     filtrado = libros
@@ -71,15 +71,15 @@ def listar_libros(libros, filtro=None):
         print("No se encontraron libros con el criterio seleccionado.")
         return
 
-    headers = ["ID", "Título", "Autor", "Año", "Leído"]
+    headers = ["ID", "Titulo", "Autor", "Anio", "Leido"]
     rows = []
     for libro in filtrado:
-        leido = "Sí" if libro["leido"] else "No"
+        leido = "Si" if libro["leido"] else "No"
         rows.append([
             str(libro.get("id", "")),
             str(libro.get("titulo", "")),
             str(libro.get("autor", "")),
-            str(libro.get("año", "")),
+            str(libro.get("anio", "")),
             leido,
         ])
 
@@ -103,14 +103,14 @@ def listar_libros(libros, filtro=None):
 
 
 def buscar_libros(libros):
-    criterio = input("Buscar por título o autor: ").strip().lower()
+    criterio = input("Buscar por titulo o autor: ").strip().lower()
     if not criterio:
         print("Debe ingresar texto para buscar.")
         return
 
     resultados = [libro for libro in libros if criterio in libro["titulo"].lower() or criterio in libro["autor"].lower()]
     if not resultados:
-        print("No se encontraron libros que coincidan con la búsqueda.")
+        print("No se encontraron libros que coincidan con la busqueda.")
         return
 
     listar_libros(resultados)
@@ -119,14 +119,14 @@ def buscar_libros(libros):
 def eliminar_libro(libros):
     id_str = input("ID del libro a eliminar: ").strip()
     if not id_str.isdigit():
-        print("ID inválido.")
+        print("ID invalido.")
         return
 
     id_libro = int(id_str)
     antes = len(libros)
     libros[:] = [libro for libro in libros if libro["id"] != id_libro]
     if len(libros) == antes:
-        print(f"No se encontró el libro con ID {id_libro}.")
+        print(f"No se encontro el libro con ID {id_libro}.")
     else:
         guardar_libros(libros)
         print(f"Libro ID {id_libro} eliminado.")
@@ -135,7 +135,7 @@ def eliminar_libro(libros):
 def cambiar_estado_leido(libros):
     id_str = input("ID del libro: ").strip()
     if not id_str.isdigit():
-        print("ID inválido.")
+        print("ID invalido.")
         return
 
     id_libro = int(id_str)
@@ -143,8 +143,8 @@ def cambiar_estado_leido(libros):
         if libro["id"] == id_libro:
             libro["leido"] = not libro["leido"]
             guardar_libros(libros)
-            estado = "leído" if libro["leido"] else "no leído"
-            print(f"Libro ID {id_libro} ahora está marcado como {estado}.")
+            estado = "leido" if libro["leido"] else "no leido"
+            print(f"Libro ID {id_libro} ahora esta marcado como {estado}.")
             return
 
-    print(f"No se encontró el libro con ID {id_libro}.")
+    print(f"No se encontro el libro con ID {id_libro}.")

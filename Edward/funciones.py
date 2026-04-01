@@ -76,6 +76,9 @@ def registrar_venta(venta):
   print("\n── REGISTRAR UNA NUEVA VENTA ──────────────────")
   fecha = input("Fecha (YYYY-MM-DD): ").strip()
   codigo_venta = input("Código de la venta: ").strip()
+  if codigo_venta in [v["codigo_venta"] for v in venta]:
+    print("Error. El código de venta ya existe.")
+    return    
   codigo = input("Código del Producto: ").strip()
   producto = input("Producto: ").strip()
   try:

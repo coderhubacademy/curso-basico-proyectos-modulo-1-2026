@@ -1,7 +1,6 @@
 import json
 import os  # importamos os porque nos ayuda a buscar archivos y carpetas en nuestra computadora
 
-
 RUTA_DATOS = os.path.join(os.path.dirname(__file__), "data", "inventario.json")
 # __file__ es donde esta el archivo app.py
 # dirname es la carpeta donde esta el archivo app.py
@@ -11,16 +10,13 @@ RUTA_DATOS = os.path.join(os.path.dirname(__file__), "data", "inventario.json")
 
 def cargar_inventario():
     # muestra los datos del archivo json
-    # primero vemos si el archivo existe
     if os.path.exists(RUTA_DATOS):
         # abrimos el archivo en modo lectura
         with open(RUTA_DATOS, "r", encoding="utf-8") as archivo:
-            contenido = archivo.read()  # leemos todo el texto
-            if contenido.strip() == "":  # si esta vacio o en blanco
-                return []  # devolvemos una lista vacia
-            return json.loads(
-                contenido
-            )  # se utiliza para convertir una cadena de texto a un objeto de Python
+            contenido = archivo.read()
+            if contenido.strip() == "":
+                return []
+            return json.loads(contenido)
 
     return (
         []
@@ -30,7 +26,7 @@ def cargar_inventario():
 def guardar_inventario(inventario):
     # esta funcion toma nuestro inventario y lo guarda en el archivo
     with open(RUTA_DATOS, "w", encoding="utf-8") as archivo:
-        # "W" escribir dentro del archivo
+        # modo escritura
         json.dump(inventario, archivo, ensure_ascii=False)
         # ensure_ascii=False es para que el nombre del producto no salga asi EJ: "café" y no "caf\u00e9"
 
@@ -38,11 +34,9 @@ def guardar_inventario(inventario):
 def generar_codigo(inventario):
     # esta funcion crea un codigo unico para cada producto nuevo EJ: PROD-005
 
-    # si el inventario esta vacio, sera nuestro primer producto: PROD-001
     if len(inventario) == 0:
         return "PROD-001"
 
-    # aqui buscamos cual es el numero mas grande que ya hemos usado en los codigos
     numero_mayor = 0
     for producto in inventario:
         # tomamos el ID del producto actual EJ: PROD-003
@@ -51,64 +45,52 @@ def generar_codigo(inventario):
             # cortamos el texto por el guion "-" y nos quedamos con el numero: "003" y lo volvemos numero
             numero = int(ID.split("-")[1])
             if numero > numero_mayor:
-                numero_mayor = numero  # actualizamos el numero mas grande guardado
+                numero_mayor = numero
         except:
-            pass  # si pasa algun error raro con un codigo, lo ignoramos y seguimos
+            pass
 
-    # el nuevo numero sera el mayor de los que teniamos, mas 1
     nuevo_numero = numero_mayor + 1
     # juntamos la palabra "PROD-" y el numero nuevo con ceros a la izquierda 004, 015, etc
     return f"PROD-{nuevo_numero:03d}"
 
 
 def buscar_por_nombre_o_codigo(inventario, termino):
-    # esta funcion sirve para buscar un producto en nuestro inventario
-    # puede ser buscando por su nombre "manzana" o por su codigo "PROD-002"
+    # esta funcion es para buscar un producto en nuestro inventario
 
-    termino = (
-        termino.strip().upper()
-    )  # convertimos la busqueda en mayusculas para que sea facil comparar
+    termino = termino.strip().upper()
+
     for producto in inventario:
-        nombre_upper = producto[
-            "nombre"
-        ].upper()  # el nombre del producto en mayusculas
-        ID_upper = producto["ID"].upper()  # el codigo del producto en mayusculas
+        nombre_upper = producto["nombre"].upper()
+        ID_upper = producto["ID"].upper()
 
         # si la palabra que buscamos esta dentro del nombre, o es exactamente igual al codigo...
         if termino in nombre_upper or termino == ID_upper:
-            return producto  # encontramos el producto, lo devolvemos para poder usarlo
+            return producto
 
-    return None  # si revisamos toda la lista y no encontramos nada, retornamos none
+    return None
 
 
 def registrar_producto(inventario):
     # regristra un nuevo producto en el inventario
     print("\n REGISTRAR NUEVO PRODUCTO ")
 
-    # pedimos el nombre y la categoria
     nombre = input("  Nombre del producto : ").strip()
     categoria = input("  Categoría        : ").strip()
 
-    # pedimos el precio y la cantidad en stock
     try:
-        precio = float(
-            input("  Precio ($)          : ")
-        )  # float para precio con decimales
-        cantidad = int(input("  Cantidad en stock   : "))  # int para cantidad entera
+        precio = float(input("  Precio ($)          : "))
+        cantidad = int(input("  Cantidad en stock   : "))
     except ValueError:
-        # si el usuario escribio letras en la pregunta del precio, le decimos que hay un error
         print("Error: el precio y la cantidad deben ser numeros validos.")
-        return  # cancelamos la tarea
+        return
 
-    # usamos nuestra otra funcion de buscar para asegurarnos de no tener productos con el mismo nombre repetido
+    # esta funcion es para buscar un producto por su nombre o codigo
     if buscar_por_nombre_o_codigo(inventario, nombre):
         print(f" Ya existe un producto con el nombre '{nombre}'.")
-        return  # cancelamos para no tener prodcutos repetidos
+        return
 
-    # generar ID para el nuevo producto
     ID = generar_codigo(inventario)
 
-    # creamos un diccionario donde adentro ponemos toda la informacion del producto
     nuevo_producto = {
         "ID": ID,
         "nombre": nombre,
@@ -117,10 +99,8 @@ def registrar_producto(inventario):
         "categoria": categoria,
     }
 
-    # .append para agregar nuestro nuevo producto al inventario
     inventario.append(nuevo_producto)
 
-    # guardamos los cambios en el archivo
     guardar_inventario(inventario)
     print(f"Producto '{nombre}' registrado con ID {ID}.")
 
@@ -129,19 +109,17 @@ def listar_productos(inventario):
     # esta funcion nos muestra todos los productos que tenemos en el inventario
     print("\n INVENTARIO COMPLETO")
 
-    # si revisamos la lista y no hay ningun producto, entonces mostramos un mensaje
     if len(inventario) == 0:
         print("No hay productos registrados aun.")
         return
 
-    # coloco una linea separadora bonita repitiendo "─" 68 veces para el encabezado de los productos
-    # vamos leyendo producto por producto para colocarlo
+    # estetica
     print(
         f"\n  {'#':<4} {'Código':<10} {'Nombre':<20} {'Precio':>10} {'Stock':>6} {'Categoría':<15}"
     )
     print("  " + "─" * 68)
 
-    # enumerate nos ayuda a llevar un conteo facil de que numero de lista es (1, 2, 3...etc)
+    # enumerate nos ayuda a llevar un conteo facil de que numero de lista es
     for numero, producto in enumerate(inventario, start=1):
         # acomodamos toda la información de nuestro diccionario adentro del texto, usando < > para alinear
         print(
@@ -157,7 +135,7 @@ def listar_productos(inventario):
 
 
 def buscar_producto(inventario):
-    # le pide al usuario un producto por nombre o codigo y muestra su informacion detallada
+    # funcion para buscar producto por nombre o codigo y mostrar los detalles del prodcuti
     print("\n BUSCAR PRODUCTO ")
 
     termino = input("  Nombre o codigo a buscar: ").strip()
@@ -165,22 +143,19 @@ def buscar_producto(inventario):
         inventario, termino
     )  # usa otra vez a nuestra funcion buscadora
 
-    if producto is None:  # si nos devuelve none no encontro nada
+    if producto is None:
         print(f"No se encontro ningun producto con '{termino}'.")
         return
 
-    # si lo encuentra, mandamos llamar a nuestra funcion de abajo que imprime bonito los datos
     mostrar_detalle_producto(producto)
 
 
 def actualizar_producto(inventario):
-    # esta funcion te deja modificar información de como cambiar el precio o la categoria de algo existente.
+    # esta funcion es para cambiar el nombre de un producto y todo lo demas
     print("\n ACTUALIZAR PRODUCTO ")
 
     termino = input("  Nombre o codigo del producto a actualizar: ").strip()
-    producto = buscar_por_nombre_o_codigo(
-        inventario, termino
-    )  # primero debemos encontrarlo
+    producto = buscar_por_nombre_o_codigo(inventario, termino)
 
     if producto is None:
         print(f" No se encontro ningun producto con '{termino}'.")
@@ -189,15 +164,15 @@ def actualizar_producto(inventario):
     print("\n  Datos actuales (esto es lo que hay guardado antes de que cambies nada):")
     mostrar_detalle_producto(producto)
 
-    # mostramos un menu para elegir que cosa exacta queremos modificar
-    print("\n  ¿Qué dato deseas actualizar?")
+    # un menu para elegir que modificsr
+    print("\n  ¿Que dato deseas actualizar?")
     print("    [1] Nombre")
     print("    [2] Precio")
     print("    [3] Cantidad")
     print("    [4] Categoría")
     print("    [0] Cancelar y salir")
 
-    opcion = input("Elige una opción: ").strip()
+    opcion = input("Elige una opcion: ").strip()
 
     try:
         # dependiendo del numero que escribio el usuario, cambiamos ese lado en el diccionario
@@ -221,6 +196,43 @@ def actualizar_producto(inventario):
         )
         return
 
-    # siempre que cambiamos algo en nuestra lista, debemos guardarlo en el archivo
     guardar_inventario(inventario)
     print(" ¡El producto ha sido actualizado de manera correcta!")
+
+
+def eliminar_producto(inventario):
+    # ya me da ladilla explicar cada funcion aklsdjajsd
+    print("\n ELIMINAR PRODUCTO ")
+
+    termino = input(" Nombre o codigo del producto a eliminar: ").strip()
+    producto = buscar_por_nombre_o_codigo(inventario, termino)
+
+    if producto is None:
+        print(f" No se encontro ningun producto con '{termino}'.")
+        return
+
+    print(f"\n Producto encontrado: {producto['nombre']} (ID: {producto['ID']})")
+
+    confirmacion = (
+        input(" ¿Estas seguro de que deseas eliminar permanentemente esto? (s/n): ")
+        .strip()
+        .lower()
+    )
+
+    if confirmacion == "s":
+        inventario.remove(producto)
+        guardar_inventario(inventario)
+        print(" Producto eliminado correctamente.")
+    else:
+        print(" Operacion cancelada. No borramos nada.")
+
+
+def mostrar_detalle_producto(producto):
+    # ya sabes que hace xd
+    print()
+    print(f"   ID        : {producto['ID']}")
+    print(f"   Nombre    : {producto['nombre']}")
+    print(f"   Precio    : ${producto['precio']:.2f}")
+    print(f"   Stock     : {producto['cantidad']} unidades")
+    print(f"   Categoría : {producto['categoria']}")
+    print()

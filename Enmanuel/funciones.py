@@ -154,3 +154,73 @@ def listar_productos(inventario):
         )
 
     print(f"\n Total de productos: {len(inventario)}")
+
+
+def buscar_producto(inventario):
+    # le pide al usuario un producto por nombre o codigo y muestra su informacion detallada
+    print("\n BUSCAR PRODUCTO ")
+
+    termino = input("  Nombre o codigo a buscar: ").strip()
+    producto = buscar_por_nombre_o_codigo(
+        inventario, termino
+    )  # usa otra vez a nuestra funcion buscadora
+
+    if producto is None:  # si nos devuelve none no encontro nada
+        print(f"No se encontro ningun producto con '{termino}'.")
+        return
+
+    # si lo encuentra, mandamos llamar a nuestra funcion de abajo que imprime bonito los datos
+    mostrar_detalle_producto(producto)
+
+
+def actualizar_producto(inventario):
+    # esta funcion te deja modificar información de como cambiar el precio o la categoria de algo existente.
+    print("\n ACTUALIZAR PRODUCTO ")
+
+    termino = input("  Nombre o codigo del producto a actualizar: ").strip()
+    producto = buscar_por_nombre_o_codigo(
+        inventario, termino
+    )  # primero debemos encontrarlo
+
+    if producto is None:
+        print(f" No se encontro ningun producto con '{termino}'.")
+        return
+
+    print("\n  Datos actuales (esto es lo que hay guardado antes de que cambies nada):")
+    mostrar_detalle_producto(producto)
+
+    # mostramos un menu para elegir que cosa exacta queremos modificar
+    print("\n  ¿Qué dato deseas actualizar?")
+    print("    [1] Nombre")
+    print("    [2] Precio")
+    print("    [3] Cantidad")
+    print("    [4] Categoría")
+    print("    [0] Cancelar y salir")
+
+    opcion = input("Elige una opción: ").strip()
+
+    try:
+        # dependiendo del numero que escribio el usuario, cambiamos ese lado en el diccionario
+        if opcion == "1":
+            producto["nombre"] = input("  Nuevo nombre    : ").strip()
+        elif opcion == "2":
+            producto["precio"] = float(input("  Nuevo precio ($): "))
+        elif opcion == "3":
+            producto["cantidad"] = int(input("  Nueva cantidad  : "))
+        elif opcion == "4":
+            producto["categoria"] = input("  Nueva categoria : ").strip()
+        elif opcion == "0":
+            print("Operacion cancelada. Todo esta igual que antes.")
+            return
+        else:
+            print("Opcion no valida. Debias escoger un numero del 0 al 4.")
+            return
+    except ValueError:
+        print(
+            "Error: escribiste un valor que no es texto o no es numero cuando debia serlo."
+        )
+        return
+
+    # siempre que cambiamos algo en nuestra lista, debemos guardarlo en el archivo
+    guardar_inventario(inventario)
+    print(" ¡El producto ha sido actualizado de manera correcta!")

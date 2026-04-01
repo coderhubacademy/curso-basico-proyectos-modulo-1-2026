@@ -35,8 +35,9 @@ def mostrar_menu():
   print("  ║  [2] Listar el historial de ventas   ║")
   print("  ║  [3] Mostrar el total de ingresos    ║")
   print("  ║  [4] Buscar ventas por fecha         ║")
-  print("  ║  [5] Eliminar una venta              ║")
-  print("  ║  [6] Salir                           ║")
+  print("  ║  [5] Buscar ventas entre fecha       ║")
+  print("  ║  [6] Eliminar una venta              ║")
+  print("  ║  [7] Salir                           ║")
   print("  ╚══════════════════════════════════════╝")
 
 # ─────────────────────────────────────────────
@@ -59,8 +60,10 @@ def app():
     elif opcion == "4":
       buscar_venta(venta)
     elif opcion == "5":
-      eliminar_venta(venta)
+      buscar_venta_entre_fecha(venta)
     elif opcion == "6":
+      eliminar_venta(venta)
+    elif opcion == "7":
       print("\n Hasta una nueva venta.")
       break
     else:
@@ -75,7 +78,7 @@ def app():
 def registrar_venta(venta):
   print("\n── REGISTRAR UNA NUEVA VENTA ──────────────────")
   fecha = input("Fecha (YYYY-MM-DD): ").strip()
-# Validacion de formato de fecha 
+  #validar fecha
   if not fecha:
     print("Error. La fecha no puede estar vacía.")
     return 
@@ -85,12 +88,11 @@ def registrar_venta(venta):
   if not all(part.isdigit() for part in fecha.split("-")):
     print("Error. La fecha debe contener solo números y guiones.")
     return
-  
   codigo_venta = input("Código de la venta: ").strip()
-# Validacion de codigo de venta
+  #validar codigo de venta
   if codigo_venta in [v["codigo_venta"] for v in venta]:
-    print("Error. El código de venta ya existe.")
-    return    
+    print("Error. El código de la venta ya existe.")
+    return
   codigo = input("Código del Producto: ").strip()
   producto = input("Producto: ").strip()
   try:
@@ -147,19 +149,63 @@ def ingresos_venta(venta):
 def buscar_venta(venta):
   print("\n── BUSCAR VENTAS POR FECHA ────────────────────")
   fecha_busqueda = input("Ingresa la fecha (YYYY-MM-DD): ").strip()
+  #validar fecha
+  if not fecha_busqueda:
+    print("Error. La fecha no puede estar vacía.")
+    return  
+  if not fecha_busqueda.count("-") == 2:
+    print("Error. La fecha debe tener el formato YYYY-MM-DD.")
+    return
+  if not all(part.isdigit() for part in fecha_busqueda.split("-")):
+    print("Error. La fecha debe contener solo números y guiones.")
+    return
   resultados = [v for v in venta if v.get("fecha") == fecha_busqueda]
-
   if not resultados:
     print("No hay ventas registradas en esa fecha.")
     return
-
   print(f"\nVentas del {fecha_busqueda}:")
   for v in resultados:
     print(f"Código de la venta: {v['codigo_venta']} - Código del Producto: {v['codigo']} - Descripcion de Producto: {v['producto']} - Cantidad: {v['cantidad']} - Total de Venta: ${v['total']}")
 
+# ─────────────────────────────────────────────
+#  5. BUSCAR VENTAS POR FECHA ENTRE FECHAS
+# ─────────────────────────────────────────────
+def buscar_venta_entre_fecha(venta):
+    print("\n── BUSCAR VENTAS ENTRE FECHAS ────────────────────")
+    fecha_inicio = input("Ingresa la fecha de inicio (YYYY-MM-DD): ").strip()
+    #validar fecha inicio
+    if not fecha_inicio:
+      print("Error. La fecha de inicio no puede estar vacía.")
+      return  
+    if not fecha_inicio.count("-") == 2:
+      print("Error. La fecha de inicio debe tener el formato YYYY-MM-DD.")
+      return
+    if not all(part.isdigit() for part in fecha_inicio.split("-")):
+      print("Error. La fecha de inicio debe contener solo números y guiones.")
+      return
+    #validar fecha fin
+    fecha_fin = input("Ingresa la fecha de fin (YYYY-MM-DD): ").strip()
+    if not fecha_fin:
+      print("Error. La fecha de fin no puede estar vacía.")
+      return 
+    if not fecha_fin.count("-") == 2:
+      print("Error. La fecha de fin debe tener el formato YYYY-MM-DD.")
+      return    
+    if not all(part.isdigit() for part in fecha_fin.split("-")):
+      print("Error. La fecha de fin debe contener solo números y guiones.")
+      return
+    resultados = [v for v in venta if fecha_inicio <= v.get("fecha", "") <= fecha_fin]
+    if not resultados:
+        print("No hay ventas registradas en ese rango de fechas.")
+        return
+    print(f"\nVentas entre {fecha_inicio} y {fecha_fin}:")
+    for v in resultados:
+        print(f"Fecha de venta: {v['fecha']} - Código de la venta: {v['codigo_venta']} - Código del Producto: {v['codigo']} - Descripción: {v['producto']} - Cantidad: {v['cantidad']} - Total: ${v['total']}")
+
+
 
 # ─────────────────────────────────────────────
-#  5. ELIMINAR VENTA
+#  6. ELIMINAR VENTA
 # ─────────────────────────────────────────────
 
 def eliminar_venta(venta):

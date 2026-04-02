@@ -1,0 +1,51 @@
+[
+    {
+        "nombre": "daniela sanchez",
+        "telefono": 4125211241,
+        "correo": "daniela@gmail.com"
+    },
+    {
+        "nombre": "carlos perez",
+        "telefono": 4164521252,
+        "correo": "carlosss@gmail.com"
+    },
+    {
+        "nombre": "alejandra prada",
+        "telefono": 4125257885,
+        "correo": "ale@gmail.com"
+    },
+    {
+        "nombre": "delimar rodriguez",
+        "telefono": 4147414125,
+        "correo": "deli@gmail.com"
+    },
+    {
+        "nombre": "flor marina",
+        "telefono": 4125236365,
+        "correo": "flor@gmail.com"
+    },
+    {
+        "nombre": "maria alejandra lopez",
+        "telefono": 412452255,
+        "correo": "mari@gmail.com",
+        "grupo": "familia"
+    },
+    {
+        "nombre": "mauricio lopez",
+        "telefono": 4125254122,
+        "correo": "mau@gmail.com",
+        "grupo": "familia"
+    },
+    {
+        "nombre": "renee gutierrez",
+        "telefono": 412122352,
+        "correo": "renee@gmail.com",
+        "grupo": "trabajo"
+    },
+    {
+        "nombre": "ana luisa sanchez",
+        "telefono": 4144154523,
+        "correo": "analuisa@gmail.com",
+        "grupo": "trabajo"
+    }
+]

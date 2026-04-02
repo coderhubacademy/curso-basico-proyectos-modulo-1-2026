@@ -109,13 +109,6 @@ def buscar():
         print('Este contacto no existe en tu agenda')
 
 
-#cargar contactos 
-#print grupos
-#input
-# list comprehencion nueva_lista = [elemento for elemento in tu_lista_original if condicion]
-# itero
-#muestro resultados 
-
 #filtro grupos
 def filtro_grupo():
     contacto= cargar_contactos()
@@ -127,15 +120,6 @@ def filtro_grupo():
 
      
 #editar contactos
- # cargar contonactos
- # input que contacto desea modifiicar
- #validar si esta el contacto
- #si el nombre esta. 
-  # modificar numero
-  #correo
-  #guardar
- #sino 
-   #no existe
 
 def editar ():
     contactos = cargar_contactos()
@@ -167,19 +151,7 @@ def editar ():
         print('Este contacto no existe en tu agenda')
   
 #eliminar contactos
-  # cargar contacto
-  #input que contacto desea eliminar
-  # recorrer
-    # validacion de nombre
-    # si esta 
-     # preguntar para seguridad s/n
-     # se elimina
-     # guardar
-     #salgo del for
-    #si no
-     # return menu
-    #si no 
-     #no existe
+
 
 def eliminar():
     contactos = cargar_contactos()

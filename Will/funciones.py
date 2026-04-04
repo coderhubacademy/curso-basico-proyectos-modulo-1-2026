@@ -27,7 +27,7 @@ def listar_inventario(inventario):
         for nombre, datos in inventario.items():
             print(f"{nombre}: Cantidad: {datos['cantidad']}, Precio: {datos['precio']}")
     else:
-        print("El inventario está vacio.")
+        print("El inventario esta vacio.")
 
 def buscar_producto(inventario, nombre):
     if nombre in inventario:

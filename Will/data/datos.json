@@ -1,0 +1,10 @@
+{
+    "Pera": {
+        "cantidad": 25,
+        "precio": 15.0
+    },
+    "Cambur": {
+        "cantidad": 50,
+        "precio": 5.0
+    }
+}

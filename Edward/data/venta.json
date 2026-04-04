@@ -1,0 +1,47 @@
+[
+    {
+        "fecha": "1980-12-29",
+        "codigo": "2",
+        "codigo_venta": "1",
+        "producto": "3",
+        "cantidad": 4,
+        "precio": 5.0,
+        "total": 20.0
+    },
+    {
+        "fecha": "1979-07-27",
+        "codigo": "199",
+        "codigo_venta": "100",
+        "producto": "111",
+        "cantidad": 11,
+        "precio": 1.0,
+        "total": 11.0
+    },
+    {
+        "fecha": "2020-01-01",
+        "codigo": "01",
+        "codigo_venta": "01",
+        "producto": "jnfed",
+        "cantidad": 2,
+        "precio": 2.0,
+        "total": 4.0
+    },
+    {
+        "fecha": "2027",
+        "codigo": "14",
+        "codigo_venta": "01",
+        "producto": "1",
+        "cantidad": 14,
+        "precio": 14.0,
+        "total": 196.0
+    },
+    {
+        "fecha": "055",
+        "codigo": "ww",
+        "codigo_venta": "01",
+        "producto": "1",
+        "cantidad": 1,
+        "precio": 1.0,
+        "total": 1.0
+    }
+]

@@ -40,34 +40,7 @@ def mostrar_menu():
   print("  ║  [7] Salir                           ║")
   print("  ╚══════════════════════════════════════╝")
 
-# ─────────────────────────────────────────────
-#  APP 
-# ─────────────────────────────────────────────
 
-def app():
-  venta = cargar_venta()   # ← Cargar lista de ventas
-
-  while True:
-    mostrar_menu()
-    opcion = input("Elige una opción: ").strip()
-
-    if opcion == "1":
-      registrar_venta(venta)
-    elif opcion == "2":
-      listar_venta(venta)
-    elif opcion == "3":
-      ingresos_venta(venta)
-    elif opcion == "4":
-      buscar_venta(venta)
-    elif opcion == "5":
-      buscar_venta_entre_fecha(venta)
-    elif opcion == "6":
-      eliminar_venta(venta)
-    elif opcion == "7":
-      print("\n Hasta una nueva venta.")
-      break
-    else:
-      print(" Opción no válida.")
 
 
 

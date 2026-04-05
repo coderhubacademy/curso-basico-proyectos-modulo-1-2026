@@ -1,11 +1,4 @@
-from funciones import (
-    cargar_inventario,
-    registrar_producto,
-    listar_productos,
-    buscar_producto,
-    actualizar_producto,
-    eliminar_producto,
-)
+import funciones
 
 
 def mostrar_menu():
@@ -21,7 +14,7 @@ def main():
     print("Bienvenido al Sistema de Inventario ")
     print("Cargando datos...")
 
-    inventario = cargar_inventario()
+    inventario = funciones.cargar_inventario()
     print(f"{len(inventario)} producto(s) cargado(s) desde inventario.json")
 
     while True:
@@ -29,15 +22,15 @@ def main():
         opcion = input("Elige una opcion (1-6): ").strip()
 
         if opcion == "1":
-            registrar_producto(inventario)
+            funciones.registrar_producto(inventario)
         elif opcion == "2":
-            listar_productos(inventario)
+            funciones.listar_productos(inventario)
         elif opcion == "3":
-            buscar_producto(inventario)
+            funciones.buscar_producto(inventario)
         elif opcion == "4":
-            actualizar_producto(inventario)
+            funciones.actualizar_producto(inventario)
         elif opcion == "5":
-            eliminar_producto(inventario)
+            funciones.eliminar_producto(inventario)
         elif opcion == "6":
             print("\n Hasta pronto Los datos han sido guardados.")
             break

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "titulo": "Cien años de soledad",
+    "autor": "Gabriel García Márquez",
+    "año": "1967",
+    "leido": true
+  },
+  {
+    "id": 2,
+    "titulo": "El principito",
+    "autor": "Antoine de Saint-Exupéry",
+    "año": "1943",
+    "leido": true
+  },
+  {
+    "id": 3,
+    "titulo": "El arte de la guerra",
+    "autor": "Sun Tzu",
+    "año": "500",
+    "leido": true
+  }
+]

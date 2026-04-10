@@ -125,8 +125,7 @@ def modificar_reserva(lista):
            print("Reserva actualizada.")
     else:
            print("Número inválido.")
-    
-        
+
     
     return lista
 

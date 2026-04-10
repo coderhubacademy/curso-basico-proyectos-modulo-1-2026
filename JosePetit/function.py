@@ -1,11 +1,30 @@
 import json
 
+def cargar_usuarios():
+    try:
+        with open("JosePetit/datos/usuarios.json", "r", encoding="utf-8") as archivo:
+            return json.load(archivo)
+    except FileNotFoundError:
+        print("No hay usuarios registrados. Iniciando base de datos...")
+        return {}
+    
+    # esto es para el registro, por eso hay otro archivo, try/ except (aquí lo hago en llaves, descripciones en app.md)
+
+def guardar_usuarios(datos):
+    with open("JosePetit/datos/usuarios.json", "w", encoding="utf-8") as archivo:
+        json.dump(datos, archivo, indent=4, ensure_ascii=False)
 
 def cargar_datos():
-       with open("JosePetit/datos/datos.json", "r",encoding="utf-8") as archivo:
+      try:
+        with open("JosePetit/datos/datos.json", "r", encoding="utf-8") as archivo:
             print("Datos cargados correctamente.")
             return json.load(archivo)
+      except FileNotFoundError:
+        print("Archivo no encontrado. Iniciando con lista vacía...")
+        return [] 
        
+
+       # misma funcion pero cambiandole por el try/except (felicidaes hice algo útil xd)
 
 def guardar_datos(lista):
     with open("JosePetit/datos/datos.json", "w", encoding="utf-8") as archivo:
@@ -18,17 +37,27 @@ def guardar_datos(lista):
         # encoding = "utf-8", estandar, pa que se puedan ver los acentos y tu nombre no salga como en los que ves en .txt
 
 def registrar_reserva(lista):
+      usuarios_registraos = cargar_usuarios()
       print("\n NUEVA RESERVA")
-      cliente = input("Nombre del cliente: ")
-      fecha = input("Fecha (D/M): ")
-      hora = input("Hora (H:M): ")
+      while True:
+           cliente = input("Ingrese su nombre de usuario:")
+
+           if cliente in usuarios_registraos:
+              print(" Bienvenido Usuario {cliente}")
+              fecha = input("Fecha (D/M): ")
+              hora = input("Hora (H:M): ")
+              descripcion = input("Descripción del evento:")
+
     
-      nueva = {"cliente": cliente, "fecha": fecha, "hora": hora}
-      lista.append(nueva)
+              nueva = {"cliente": cliente, "fecha": fecha, "hora": hora, "descripcion": descripcion}
+              lista.append(nueva)
     
-      guardar_datos(lista)
-      print(f"Reserva de {cliente} registrada.")
-      return lista
+              guardar_datos(lista)
+              print(f"Reserva de {cliente} registrada.")
+              return lista
+          
+           else:
+              print("Usuario no existente")
 
 def listar_reserva(lista):
     if not lista:
@@ -39,6 +68,7 @@ def listar_reserva(lista):
         n = 1
         
         for r in lista:
+            print()
             print(f"{n} Cliente: {r['cliente']} | Fecha: {r['fecha']} | Hora: {r['hora']}")
 
             n = n + 1
@@ -65,7 +95,7 @@ def eliminar_reserva(lista):
     return lista
 
 def buscar_reserva(lista):
-    nombre = input("Nombre a buscar: ").lower()
+    nombre = input("Usuario a buscar: ").lower()
     encontrado = False  
     for r in lista:
         if nombre in r['cliente'].lower():
@@ -90,6 +120,7 @@ def modificar_reserva(lista):
            lista[indice]['cliente'] = input("Nuevo nombre: ")
            lista[indice]['fecha'] = input("Nueva fecha: ")
            lista[indice]['hora'] = input("Nueva hora: ")
+           lista[indice]['descripcion'] = input("Alguna descripción?")
            guardar_datos(lista)
            print("Reserva actualizada.")
     else:
@@ -98,3 +129,4 @@ def modificar_reserva(lista):
         
     
     return lista
+

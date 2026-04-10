@@ -1,0 +1,14 @@
+[
+    {
+        "cliente": "CarlosMolina",
+        "fecha": "4/5",
+        "hora": "10:00",
+        "descripcion": "ida con amigos"
+    },
+    {
+        "cliente": "José Petit",
+        "fecha": "5/5",
+        "hora": "11:00",
+        "descripcion": " Pelicula Mario Galaxy"
+    }
+]

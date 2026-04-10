@@ -46,6 +46,7 @@ def mostrar_menu():
     print("4. Modificar")
     print("5. Eliminar") 
     print("6. Salir")
+
           
 
 if __name__ == "__main__":
@@ -83,3 +84,4 @@ if __name__ == "__main__":
                 break
             else:
                 print("Opción no válida (ponga num del 1 al 6)")
+

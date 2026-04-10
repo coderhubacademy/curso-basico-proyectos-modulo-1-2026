@@ -21,7 +21,7 @@ Bienvenido a Bookit, una app de reservas y citas desarrollada por José Petit, p
 
 - El usuario registra SU reserva, con nombre, fecha y hora 
 - Puede modificar o eliminar su reserva (si le conviene)
-- Todas esas reservas están listadas en una base de datos (datos.json')
+- Todas esas reservas están listadas en una base de datos (datos.json').
 
 # IMPLEMENTACIONES 
 

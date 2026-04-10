@@ -43,7 +43,7 @@ def registrar_reserva(lista):
            cliente = input("Ingrese su nombre de usuario:")
 
            if cliente in usuarios_registraos:
-              print(" Bienvenido Usuario {cliente}")
+              print("Bienvenido Usuario {cliente}")
               fecha = input("Fecha (D/M): ")
               hora = input("Hora (H:M): ")
               descripcion = input("Descripción del evento:")
